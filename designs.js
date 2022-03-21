@@ -22,26 +22,16 @@ form.addEventListener("submit", function(e) {
     }
     makeGrid();
     
-//Attempt to apply event listener to html group - not working yet
-    // let tableCells = table.getElementsByTagName("td");
-    // console.log(tableCells);
-
-    // tableCells.forEach(function cell() {
-    //     cell.addEventListener("click", function(e) {
-    //             colorCell();
-    //     });
-    // });
-
-// This works, but only for the first cell due to querySelector being used. Using querySelectorAll returns an error
-    let tableCells = table.querySelector("td");
-    tableCells.addEventListener("click", function(e) {
-        colorCell();
+    let tableCells = table.querySelectorAll("td").forEach(cell => {
+        cell.addEventListener("click", function(e) {
+            colorCell();
+        })
+        function colorCell () {
+            let color = document.querySelector("#colorPicker").value;
+            cell.setAttribute('style', `background-color: ${color};`);
+        }
     });
-
-    function colorCell () {
-        let color = document.querySelector("#colorPicker").value;
-        tableCells.setAttribute('style', `background-color: ${color};`);
-    }
+    
 });
 
 function makeGrid() {
