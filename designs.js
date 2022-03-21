@@ -12,20 +12,25 @@ const form = document.getElementById("sizePicker");
 
 form.addEventListener("submit", function(e) {
 
+    // Prevents the function from running automatically once the page loads:
     e.preventDefault(); 
 
+    // Clears the table when SUBMIT is clicked if a table already exists:
     let table = document.querySelector("#pixelCanvas");
     if (table.hasChildNodes()) {
         while (table.firstChild) {
             table.removeChild(document.querySelector("tbody"));
           }
     }
+    // Creates the grid:
     makeGrid();
     
+    // Creates an event listener that checks each cell...
     let tableCells = table.querySelectorAll("td").forEach(cell => {
         cell.addEventListener("click", function(e) {
             colorCell();
         })
+        // ...and will color the cell the current value of the color picker once clicked:
         function colorCell () {
             let color = document.querySelector("#colorPicker").value;
             cell.setAttribute('style', `background-color: ${color};`);
@@ -34,6 +39,7 @@ form.addEventListener("submit", function(e) {
     
 });
 
+// Creates a grid based on the value of height and width:
 function makeGrid() {
 // Your code goes here!
     let x = document.querySelector("#inputHeight").value;
