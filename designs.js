@@ -1,15 +1,7 @@
-// Select color input
-// let color = document.querySelector("#colorPicker").value;
-
-// Select size input
-// let height = document.querySelector("#inputHeight").value;
-// let width = document.querySelector("#inputWidth").value;
-
 // When size is submitted by the user, call makeGrid()
 const form = document.getElementById("sizePicker");
-// console.log("Form" + form.length);
-// console.log(JSON.stringify(form));
 
+// Clears the grid and creates a new one once submit is clicked:
 form.addEventListener("submit", function(e) {
 
     // Prevents the function from running automatically once the page loads:
@@ -20,7 +12,7 @@ form.addEventListener("submit", function(e) {
     if (table.hasChildNodes()) {
         while (table.firstChild) {
             table.removeChild(document.querySelector("tbody"));
-          }
+        }
     }
     // Creates the grid:
     makeGrid();
@@ -39,17 +31,16 @@ form.addEventListener("submit", function(e) {
     
 });
 
-// Creates a grid based on the value of height and width:
+// Creates a grid based on the value of height and width (height and width variables won't apply changes if declared outside of the function)
 function makeGrid() {
-// Your code goes here!
-    let x = document.querySelector("#inputHeight").value;
-    let y = document.querySelector("#inputWidth").value;
     
     let grid = document.querySelector("#pixelCanvas");
+    let height = document.querySelector("#inputHeight").value; 
+    let width = document.querySelector("#inputWidth").value;;
     
-    for (let i = 0; i < x; i++) {
+    for (let i = 0; i < height; i++) {
         let gridRow = grid.insertRow(i);
-        for (let j = 0; j < y; j++) {
+        for (let j = 0; j < width; j++) {
             let gridCell = gridRow.insertCell(j);
         }
     }
